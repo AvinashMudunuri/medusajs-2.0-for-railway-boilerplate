@@ -39,6 +39,7 @@
     "@rokmohar/medusa-plugin-meilisearch": "^0.1.1",
     "awilix": "^8.0.1",
     "express": "^4.21.1",
+    "medusa-plugin-twilio-sms": "^1.2.9",
     "medusajs-launch-utils": "^0.0.5",
     "minio": "^8.0.2",
     "pg": "^8.13.0",
