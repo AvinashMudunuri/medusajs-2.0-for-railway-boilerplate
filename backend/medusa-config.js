@@ -29,6 +29,49 @@ import {
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
+const moduleProviderServices = [
+  ...(SENDGRID_API_KEY && SENDGRID_FROM_EMAIL
+    ? [
+        {
+          resolve: "@medusajs/notification-sendgrid",
+          id: "sendgrid",
+          options: {
+            channels: ["email"],
+            api_key: SENDGRID_API_KEY,
+            from: SENDGRID_FROM_EMAIL,
+          },
+        },
+      ]
+    : []),
+  ...(RESEND_API_KEY && RESEND_FROM_EMAIL
+    ? [
+        {
+          resolve: "./src/modules/email-notifications",
+          id: "resend",
+          options: {
+            channels: ["email"],
+            api_key: RESEND_API_KEY,
+            from: RESEND_FROM_EMAIL,
+          },
+        },
+      ]
+    : []),
+  ...(TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN && TWILIO_PHONE_NUMBER
+    ? [
+        {
+          resolve: "./src/modules/sms-notifications",
+          id: "twilio",
+          options: {
+            channels: ["sms"],
+            account_sid: TWILIO_ACCOUNT_SID,
+            auth_token: TWILIO_AUTH_TOKEN,
+            phone_number: TWILIO_PHONE_NUMBER,
+          },
+        },
+      ]
+    : []),
+];
+
 const medusaConfig = {
   projectConfig: {
     databaseUrl: DATABASE_URL,
@@ -115,48 +158,7 @@ const medusaConfig = {
                     channels: ["feed"],
                   },
                 },
-                ...(SENDGRID_API_KEY && SENDGRID_FROM_EMAIL
-                  ? [
-                      {
-                        resolve: "@medusajs/notification-sendgrid",
-                        id: "sendgrid",
-                        options: {
-                          channels: ["email"],
-                          api_key: SENDGRID_API_KEY,
-                          from: SENDGRID_FROM_EMAIL,
-                        },
-                      },
-                    ]
-                  : []),
-                ...(RESEND_API_KEY && RESEND_FROM_EMAIL
-                  ? [
-                      {
-                        resolve: "./src/modules/email-notifications",
-                        id: "resend",
-                        options: {
-                          channels: ["email"],
-                          api_key: RESEND_API_KEY,
-                          from: RESEND_FROM_EMAIL,
-                        },
-                      },
-                    ]
-                  : []),
-                ...(TWILIO_ACCOUNT_SID &&
-                TWILIO_AUTH_TOKEN &&
-                TWILIO_PHONE_NUMBER
-                  ? [
-                      {
-                        resolve: "medusa-plugin-twilio-sms",
-                        id: "twilio",
-                        options: {
-                          channels: ["sms"],
-                          account_sid: TWILIO_ACCOUNT_SID,
-                          auth_token: TWILIO_AUTH_TOKEN,
-                          phone_number: TWILIO_PHONE_NUMBER,
-                        },
-                      },
-                    ]
-                  : []),
+                ...moduleProviderServices,
               ],
             },
           },

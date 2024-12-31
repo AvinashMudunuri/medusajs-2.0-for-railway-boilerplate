@@ -12,7 +12,7 @@ export default async function orderPlacedHandler({
 }: SubscriberArgs<any>) {
   const notificationModuleService: INotificationModuleService =
     container.resolve(Modules.NOTIFICATION);
-  const twilioSmsService = container.resolve("twilioSmsService");
+  const twilioService = container.resolve("TwilioService");
   const orderModuleService: IOrderModuleService = container.resolve(
     Modules.ORDER
   );
@@ -47,9 +47,10 @@ export default async function orderPlacedHandler({
     if (!shippingAddress.phone) {
       throw new Error("Shipping address phone number is not provided");
     }
-    await twilioSmsService.send({
+    await twilioService.send({
       to: shippingAddress.phone,
-      body: `Your order ${order.id} has been placed!`,
+      template: "order_confirmation",
+      data: { orderId: order.id },
     });
   } catch (error) {
     console.error("Error sending order confirmation SMS:", error);
