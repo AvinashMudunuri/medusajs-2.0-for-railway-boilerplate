@@ -1,5 +1,5 @@
 import { ModuleProviderExports } from "@medusajs/types";
-import { TwilioService } from "./services/twilioService";
+import { TwilioService } from "./services/twilio";
 
 const services = [TwilioService];
 

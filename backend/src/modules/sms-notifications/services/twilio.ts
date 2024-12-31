@@ -52,6 +52,12 @@ export class TwilioService extends AbstractNotificationProviderService {
         `No notification information provided`
       );
     }
+    if (notification.channel === "email") {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        `email notification not supported`
+      );
+    }
     if (!notification.to) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,

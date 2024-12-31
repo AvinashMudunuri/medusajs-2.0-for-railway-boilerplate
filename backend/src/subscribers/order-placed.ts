@@ -5,6 +5,7 @@ import {
 } from "@medusajs/types";
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
 import { EmailTemplates } from "../modules/email-notifications/templates";
+import { SMSTemplate } from "../modules/sms-notifications/templates";
 
 export default async function orderPlacedHandler({
   event: { data },
@@ -12,7 +13,6 @@ export default async function orderPlacedHandler({
 }: SubscriberArgs<any>) {
   const notificationModuleService: INotificationModuleService =
     container.resolve(Modules.NOTIFICATION);
-  const twilioService = container.resolve("TwilioService");
   const orderModuleService: IOrderModuleService = container.resolve(
     Modules.ORDER
   );
@@ -47,10 +47,13 @@ export default async function orderPlacedHandler({
     if (!shippingAddress.phone) {
       throw new Error("Shipping address phone number is not provided");
     }
-    await twilioService.send({
+    await notificationModuleService.createNotifications({
       to: shippingAddress.phone,
-      template: "order_confirmation",
-      data: { orderId: order.id },
+      channel: "sms",
+      template: "order_confirmation" as SMSTemplate,
+      data: {
+        orderId: order.id,
+      },
     });
   } catch (error) {
     console.error("Error sending order confirmation SMS:", error);
