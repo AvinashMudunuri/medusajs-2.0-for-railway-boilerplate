@@ -13,13 +13,13 @@ type InjectedDependencies = {
 interface TwilioServiceConfig {
   accountSid: string;
   authToken: string;
-  from: string;
+  phoneNumber: string;
 }
 
 export interface TwilioServiceOptions {
   account_sid: string;
   auth_token: string;
-  from: string;
+  phone_number: string;
 }
 
 /**
@@ -37,7 +37,7 @@ export class TwilioService extends AbstractNotificationProviderService {
     this.config_ = {
       accountSid: options.account_sid,
       authToken: options.auth_token,
-      from: options.from,
+      phoneNumber: options.phone_number,
     };
     this.logger_ = logger;
     this.twilio = new Twilio(this.config_.accountSid, this.config_.authToken);
@@ -73,7 +73,7 @@ export class TwilioService extends AbstractNotificationProviderService {
     try {
       const message = await this.twilio.messages.create({
         body: messageBody,
-        from: this.config_.from,
+        from: this.config_.phoneNumber,
         to: notification.to,
       });
       this.logger_.info(`SMS sent successfully: ${message.sid}`);
