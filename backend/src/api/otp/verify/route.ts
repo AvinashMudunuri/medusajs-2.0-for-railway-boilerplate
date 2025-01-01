@@ -1,6 +1,7 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
 import { MedusaError } from "@medusajs/utils";
 import { OtpService } from "modules/otp/services/otp";
+import { OTP_MODULE } from "modules/otp";
 
 type SendReq = {
   phone: string;
@@ -19,7 +20,7 @@ export const POST = async (
     );
   }
   try {
-    const otpService = req.scope.resolve("OTP_SERVICE") as OtpService;
+    const otpService: OtpService = req.scope.resolve(OTP_MODULE) as OtpService;
     const isValid = await otpService.verifyOTP(phone, code);
     if (isValid) {
       res.status(200).json({ message: "OTP verified successfully" });
