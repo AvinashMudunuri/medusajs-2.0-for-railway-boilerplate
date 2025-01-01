@@ -1,10 +1,8 @@
-import { ModuleProviderExports } from "@medusajs/types";
-import { OtpService } from "./services/otp";
+import { OtpService } from "./service/Otp";
+import { Module } from "@medusajs/framework/utils";
 
-const services = [OtpService];
+export const OTP_MODULE = "otp";
 
-const providerExport: ModuleProviderExports = {
-  services,
-};
-
-export default providerExport;
+export default Module(OTP_MODULE, {
+  service: OtpService,
+});
