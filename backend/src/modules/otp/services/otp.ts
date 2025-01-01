@@ -26,7 +26,6 @@ export interface TwilioServiceOptions {
  */
 
 export class OtpService {
-  static identifier = "OTP_SERVICE";
   protected config_: TwilioServiceConfig; // Configuration for Twilio API
   protected logger_: Logger; // Logger for error and event logging
   protected twilio: Twilio; // Instance of the Twilio API client
