@@ -25,6 +25,7 @@ import {
   TWILIO_ACCOUNT_SID,
   TWILIO_AUTH_TOKEN,
   TWILIO_PHONE_NUMBER,
+  TWILIO_VERIFY_SERVICE_SID,
 } from "lib/constants";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
@@ -66,6 +67,7 @@ const moduleProviderServices = [
             account_sid: TWILIO_ACCOUNT_SID,
             auth_token: TWILIO_AUTH_TOKEN,
             phone_number: TWILIO_PHONE_NUMBER,
+            verify_service_sid: TWILIO_VERIFY_SERVICE_SID,
           },
         },
       ]
