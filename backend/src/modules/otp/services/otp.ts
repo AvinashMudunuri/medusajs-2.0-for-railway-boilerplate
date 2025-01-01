@@ -43,7 +43,7 @@ export class OtpService {
 
   async sendOTP(phoneNumber: string): Promise<void> {
     try {
-      const verification = await this.twilio.verify._v2
+      const verification = await this.twilio.verify.v2
         .services(this.config_.verifyServiceSid)
         .verifications.create({
           to: phoneNumber,
@@ -63,7 +63,7 @@ export class OtpService {
 
   async verifyOTP(phoneNumber: string, code: string): Promise<boolean> {
     try {
-      const verificationCheck = await this.twilio.verify._v2
+      const verificationCheck = await this.twilio.verify.v2
         .services(this.config_.verifyServiceSid)
         .verificationChecks.create({
           to: phoneNumber,
