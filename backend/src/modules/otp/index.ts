@@ -1,5 +1,5 @@
-import { OtpService } from "./service/Otp";
-import { Module } from "@medusajs/framework/utils";
+import { OtpService } from "./services/otp";
+import { Module } from "@medusajs/utils";
 
 export const OTP_MODULE = "otp";
 
