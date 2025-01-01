@@ -19,7 +19,7 @@ export const POST = async (
     );
   }
   try {
-    const twilioService = req.scope.resolve("twilioService") as TwilioService;
+    const twilioService = req.scope.resolve("TWILIO_SERVICE") as TwilioService;
     const isValid = await twilioService.verifyOTP(phone, code);
     if (isValid) {
       res.status(200).json({ message: "OTP verified successfully" });

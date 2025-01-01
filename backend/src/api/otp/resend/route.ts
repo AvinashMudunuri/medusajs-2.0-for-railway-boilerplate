@@ -18,7 +18,7 @@ export const POST = async (
     );
   }
   try {
-    const twilioService = req.scope.resolve("twilioService") as TwilioService;
+    const twilioService = req.scope.resolve("TWILIO_SERVICE") as TwilioService;
     await twilioService.sendOTP(phone);
     res.status(200).json({ message: "OTP resent successfully" });
   } catch (error) {

@@ -94,6 +94,9 @@ const medusaConfig = {
   },
   modules: [
     {
+      resolve: "./src/modules/sms-notifications",
+    },
+    {
       key: Modules.FILE,
       resolve: "@medusajs/file",
       options: {
