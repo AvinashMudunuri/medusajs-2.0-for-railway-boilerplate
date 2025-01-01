@@ -94,6 +94,16 @@ const medusaConfig = {
   },
   modules: [
     {
+      resolve: "./src/modules/otp",
+      id: "otp",
+      options: {
+        account_sid: TWILIO_ACCOUNT_SID,
+        auth_token: TWILIO_AUTH_TOKEN,
+        phone_number: TWILIO_PHONE_NUMBER,
+        verify_service_sid: TWILIO_VERIFY_SERVICE_SID,
+      },
+    },
+    {
       key: Modules.FILE,
       resolve: "@medusajs/file",
       options: {

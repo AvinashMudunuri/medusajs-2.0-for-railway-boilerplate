@@ -1,6 +1,6 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
 import { MedusaError } from "@medusajs/utils";
-import { TwilioService } from "modules/sms-notifications/services/twilio";
+import { OtpService } from "modules/otp/services/otp";
 
 type SendReq = {
   phone: string;
@@ -18,8 +18,8 @@ export const POST = async (
     );
   }
   try {
-    const twilioService = req.scope.resolve("TWILIO_SERVICE") as TwilioService;
-    await twilioService.sendOTP(phone);
+    const otpService = req.scope.resolve("OTP_SERVICE") as OtpService;
+    await otpService.sendOTP(phone);
     res.status(200).json({ message: "OTP sent successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
