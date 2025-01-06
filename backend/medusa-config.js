@@ -77,7 +77,7 @@ const moduleProviderServices = [
 const medusaConfig = {
   projectConfig: {
     databaseUrl: DATABASE_URL,
-    databaseLogging: true,
+    databaseLogging: false,
     redisUrl: REDIS_URL,
     workerMode: WORKER_MODE,
     http: {
