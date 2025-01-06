@@ -3,7 +3,7 @@
     "target": "ES2021",
     "allowJs": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "Node16",
     "moduleResolution": "node16",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
