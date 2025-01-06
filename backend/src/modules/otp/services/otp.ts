@@ -1,6 +1,6 @@
 import { Logger } from "@medusajs/types";
-import { MedusaError } from "@medusajs/utils";
-
+import { MedusaError, MedusaService } from "@medusajs/utils";
+import { Otp } from "../models/otp";
 import { Twilio } from "twilio";
 
 type InjectedDependencies = {
@@ -25,12 +25,13 @@ export interface TwilioServiceOptions {
  * Service to handle SMS notifications using the Twilio API.
  */
 
-export class OtpService {
+export class OtpService extends MedusaService({ Otp }) {
   protected config_: TwilioServiceConfig; // Configuration for Twilio API
   protected logger_: Logger; // Logger for error and event logging
   protected twilio: Twilio; // Instance of the Twilio API client
 
   constructor({ logger }: InjectedDependencies, options: TwilioServiceOptions) {
+    super(...arguments);
     this.config_ = {
       accountSid: options.account_sid,
       authToken: options.auth_token,
