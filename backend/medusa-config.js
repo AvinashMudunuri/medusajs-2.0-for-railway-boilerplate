@@ -26,6 +26,10 @@ import {
   TWILIO_AUTH_TOKEN,
   TWILIO_PHONE_NUMBER,
   TWILIO_VERIFY_SERVICE_SID,
+  RAZORPAY_ID,
+  RAZORPAY_SECRET,
+  RAZORPAY_ACCOUNT,
+  RAZORPAY_WEBHOOK_SECRET,
 } from "lib/constants";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
@@ -176,7 +180,7 @@ const medusaConfig = {
           },
         ]
       : []),
-    ...(STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET
+    ...(RAZORPAY_ID && RAZORPAY_SECRET
       ? [
           {
             key: Modules.PAYMENT,
@@ -184,11 +188,16 @@ const medusaConfig = {
             options: {
               providers: [
                 {
-                  resolve: "@medusajs/payment-stripe",
-                  id: "stripe",
+                  resolve: "@sgftech/payment-razorpay",
+                  id: "razorpay",
                   options: {
-                    apiKey: STRIPE_API_KEY,
-                    webhookSecret: STRIPE_WEBHOOK_SECRET,
+                    key_id: RAZORPAY_ID,
+                    key_secret: RAZORPAY_SECRET,
+                    razorpay_account: RAZORPAY_ACCOUNT,
+                    automatic_expiry_period: 30,
+                    manual_expiry_period: 20,
+                    refund_speed: "normal",
+                    webhook_secret: RAZORPAY_WEBHOOK_SECRET,
                   },
                 },
               ],

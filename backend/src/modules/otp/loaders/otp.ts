@@ -1,4 +1,4 @@
-import { LoaderOptions } from "@medusajs/types";
+import { LoaderOptions } from "@medusajs/framework/types";
 
 export default async function otpLoader({ container }: LoaderOptions) {
   const logger = container.resolve("logger");

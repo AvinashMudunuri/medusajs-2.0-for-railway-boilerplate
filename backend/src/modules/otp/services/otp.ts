@@ -1,5 +1,5 @@
-import { Logger } from "@medusajs/types";
-import { MedusaError, MedusaService } from "@medusajs/utils";
+import { Logger } from "@medusajs/framework/types";
+import { MedusaError, MedusaService } from "@medusajs/framework/utils";
 import { Otp } from "../models/otp";
 import { Twilio } from "twilio";
 

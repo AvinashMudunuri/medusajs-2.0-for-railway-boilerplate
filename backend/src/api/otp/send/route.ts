@@ -1,5 +1,5 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
-import { MedusaError } from "@medusajs/utils";
+import { MedusaError } from "@medusajs/framework/utils";
 import { OtpService } from "modules/otp/services/otp";
 import { OTP_MODULE } from "modules/otp";
 

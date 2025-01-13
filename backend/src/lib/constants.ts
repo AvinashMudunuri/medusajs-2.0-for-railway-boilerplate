@@ -1,4 +1,4 @@
-import { loadEnv } from "@medusajs/utils";
+import { loadEnv } from "@medusajs/framework/utils";
 
 import { assertValue } from "utils/assert-value";
 
@@ -109,6 +109,14 @@ export const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 export const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 export const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 export const TWILIO_VERIFY_SERVICE_SID = process.env.TWILIO_VERIFY_SERVICE_SID;
+
+/**
+ * (optional) Razorpay configuration
+ */
+export const RAZORPAY_ID = process.env.RAZORPAY_ID;
+export const RAZORPAY_SECRET = process.env.RAZORPAY_SECRET;
+export const RAZORPAY_ACCOUNT = process.env.RAZORPAY_ACCOUNT;
+export const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
 
 /**
  * Worker mode
