@@ -1,8 +1,8 @@
-import { Modules } from "@medusajs/utils";
+import { Modules } from "@medusajs/framework/utils";
 import {
   INotificationModuleService,
   IOrderModuleService,
-} from "@medusajs/types";
+} from "@medusajs/framework/types";
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
 import { EmailTemplates } from "../modules/email-notifications/templates";
 import { SMSTemplate } from "../modules/sms-notifications/templates";
