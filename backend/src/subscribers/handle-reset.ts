@@ -12,7 +12,7 @@ export default async function resetPasswordTokenHandler({
 
   const urlPrefix =
     actor_type === "customer"
-      ? "https://suchitra-foods-amqxbsu1t-avinash-mudunuris-projects.vercel.app"
+      ? "https://suchitra-foods-e9blfhprt-avinash-mudunuris-projects.vercel.app"
       : "https://backend-production-a387.up.railway.app/app";
 
   await notificationModuleService.createNotifications({
