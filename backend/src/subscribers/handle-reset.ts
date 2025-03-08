@@ -14,6 +14,10 @@ export default async function resetPasswordTokenHandler({
     actor_type === "customer"
       ? "https://suchitrafoods.com"
       : "https://backend-production-a387.up.railway.app/app";
+  const urlPath =
+    actor_type === "customer"
+      ? `/account?view=update-password&token=${token}&email=${email}`
+      : `/reset-password?token=${token}&email=${email}`;
 
   await notificationModuleService.createNotifications({
     to: email,
@@ -25,7 +29,7 @@ export default async function resetPasswordTokenHandler({
         subject: "Password Reset Request - Suchitra Foods",
       },
       // a URL to a frontend application
-      url: `${urlPrefix}/account?view=update-password&token=${token}&email=${email}`,
+      url: `${urlPrefix}${urlPath}`,
       preview: "Password Reset Request - Suchitra Foods",
     },
   });
