@@ -27,7 +27,7 @@ export const generateSMSTemplate = (
     case "otp_verification":
       return `Your OTP code is ${data.otp}. Please use this to verify your account.`;
     case "order_confirmation":
-      return `Your order with ID ${data.orderId} has been confirmed. Thank you for shopping with us!`;
+      return `Dear ${data.customerName}, Your order with ID ${data.orderId} has been confirmed! Thank you for shopping with us! Suchitra Foods`;
     case "cart_update":
       return `Your cart has been updated. You have ${data.itemCount} items in your cart.`;
     case "general_notification":

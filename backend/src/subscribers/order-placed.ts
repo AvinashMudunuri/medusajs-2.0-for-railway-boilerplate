@@ -53,6 +53,7 @@ export default async function orderPlacedHandler({
       template: "order_confirmation" as SMSTemplate,
       data: {
         orderId: order.id,
+        customerName: `${shippingAddress.first_name} ${shippingAddress.last_name}`,
       },
     });
   } catch (error) {
