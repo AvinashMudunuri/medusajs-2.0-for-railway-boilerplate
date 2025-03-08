@@ -21,7 +21,7 @@ import {
   MINIO_SECRET_KEY,
   MINIO_BUCKET,
   MEILISEARCH_HOST,
-  MEILISEARCH_API_KEY,
+  MEILISEARCH_ADMIN_KEY,
   TWILIO_ACCOUNT_SID,
   TWILIO_AUTH_TOKEN,
   TWILIO_PHONE_NUMBER,
@@ -31,6 +31,7 @@ import {
   RAZORPAY_ACCOUNT,
   RAZORPAY_WEBHOOK_SECRET,
 } from "lib/constants";
+
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
@@ -205,38 +206,26 @@ const medusaConfig = {
           },
         ]
       : []),
-    ...(MEILISEARCH_HOST && MEILISEARCH_API_KEY
+    ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
       ? [
           {
             resolve: "@rokmohar/medusa-plugin-meilisearch",
             options: {
               config: {
-                host: MEILISEARCH_HOST,
-                apiKey: MEILISEARCH_API_KEY,
-              },
-              settings: {
-                products: {
-                  indexSettings: {
-                    searchableAttributes: [
-                      "title",
-                      "description",
-                      "variant_sku",
-                    ],
-                    displayedAttributes: [
-                      "title",
-                      "description",
-                      "variant_sku",
-                      "thumbnail",
-                      "handle",
-                    ],
-                  },
-                  primaryKey: "id",
-                },
-              },
-            },
+            host: MEILISEARCH_HOST,
+            apiKey: MEILISEARCH_ADMIN_KEY
           },
-        ]
-      : []),
+          settings: {
+            products: {
+              indexSettings: {
+                searchableAttributes: ['title', 'description', 'variant_sku'],
+                displayedAttributes: ['id', 'title', 'description', 'variant_sku', 'thumbnail', 'handle'],
+              },
+              primaryKey: 'id',
+            }
+          }
+        }
+      }] : [])
   ],
   plugins: [],
 };
