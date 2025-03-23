@@ -1,8 +1,8 @@
-import { Logger, NotificationTypes } from "@medusajs/types";
+import { Logger, NotificationTypes } from "@medusajs/framework/types";
 import {
   AbstractNotificationProviderService,
   MedusaError,
-} from "@medusajs/utils";
+} from "@medusajs/framework/utils";
 import { Twilio } from "twilio";
 import { generateSMSTemplate, SMSTemplate } from "../templates";
 

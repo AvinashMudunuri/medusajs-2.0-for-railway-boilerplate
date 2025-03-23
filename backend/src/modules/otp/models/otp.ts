@@ -1,4 +1,4 @@
-import { model } from "@medusajs/utils";
+import { model } from "@medusajs/framework/utils";
 
 export const Otp = model.define("otp", {
   id: model.id().primaryKey(),
