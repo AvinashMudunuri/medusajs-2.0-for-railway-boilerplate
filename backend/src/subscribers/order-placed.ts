@@ -31,12 +31,12 @@ export default async function orderPlacedHandler({
       template: EmailTemplates.ORDER_PLACED,
       data: {
         emailOptions: {
-          replyTo: "info@example.com",
-          subject: "Your order has been placed",
+          replyTo: "connect@suchitrafoods.com",
+          subject: "Suchitra Foods Order Confirmation",
         },
         order,
         shippingAddress,
-        preview: "Thank you for your order!",
+        preview: "Suchitra Foods Order Confirmation!",
       },
     });
   } catch (error) {

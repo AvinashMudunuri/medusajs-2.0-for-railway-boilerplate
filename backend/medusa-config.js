@@ -32,7 +32,6 @@ import {
   RAZORPAY_WEBHOOK_SECRET,
 } from "lib/constants";
 
-
 loadEnv(process.env.NODE_ENV, process.cwd());
 
 const moduleProviderServices = [
@@ -189,7 +188,8 @@ const medusaConfig = {
             options: {
               providers: [
                 {
-                  resolve: "@sgftech/payment-razorpay",
+                  resolve:
+                    "@tsc_tech/medusa-plugin-razorpay-payment/providers/razorpay",
                   id: "razorpay",
                   options: {
                     key_id: RAZORPAY_ID,
@@ -212,20 +212,33 @@ const medusaConfig = {
             resolve: "@rokmohar/medusa-plugin-meilisearch",
             options: {
               config: {
-            host: MEILISEARCH_HOST,
-            apiKey: MEILISEARCH_ADMIN_KEY
-          },
-          settings: {
-            products: {
-              indexSettings: {
-                searchableAttributes: ['title', 'description', 'variant_sku'],
-                displayedAttributes: ['id', 'title', 'description', 'variant_sku', 'thumbnail', 'handle'],
+                host: MEILISEARCH_HOST,
+                apiKey: MEILISEARCH_ADMIN_KEY,
               },
-              primaryKey: 'id',
-            }
-          }
-        }
-      }] : [])
+              settings: {
+                products: {
+                  indexSettings: {
+                    searchableAttributes: [
+                      "title",
+                      "description",
+                      "variant_sku",
+                    ],
+                    displayedAttributes: [
+                      "id",
+                      "title",
+                      "description",
+                      "variant_sku",
+                      "thumbnail",
+                      "handle",
+                    ],
+                  },
+                  primaryKey: "id",
+                },
+              },
+            },
+          },
+        ]
+      : []),
   ],
   plugins: [],
 };
