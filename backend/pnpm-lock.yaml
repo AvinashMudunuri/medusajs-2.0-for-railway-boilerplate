@@ -51,8 +51,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5(exultmk6llb5iauctypiccjd5i)
       '@tsc_tech/medusa-plugin-razorpay-payment':
-        specifier: ^0.0.4
-        version: 0.0.4(23bqxuq7dexrqk4fnxh3632awq)
+        specifier: ^0.0.6
+        version: 0.0.6(23bqxuq7dexrqk4fnxh3632awq)
       awilix:
         specifier: ^8.0.1
         version: 8.0.1
@@ -3807,8 +3807,8 @@ packages:
   '@tanstack/virtual-core@3.13.4':
     resolution: {integrity: sha512-fNGO9fjjSLns87tlcto106enQQLycCKR4DPNpgq3djP5IdcPFdPAmaKjsgzIeRhH7hWrELgW12hYnRthS5kLUw==}
 
-  '@tsc_tech/medusa-plugin-razorpay-payment@0.0.4':
-    resolution: {integrity: sha512-xKZH9+BKVef8NYc0QruWAI8Qs7Salq/1zx2HqFSgr4/eC2Rg8JeU7ddD/iJkpeGpn8pzbOdv/WT0zT3aImkDoQ==}
+  '@tsc_tech/medusa-plugin-razorpay-payment@0.0.6':
+    resolution: {integrity: sha512-9MXcsF4xv/Vogb9RKeQ+82g1cu7trwgVf5WAp/6naTdAiTkk20FXhZGmd9PRD3B1kFkyiQxo46M8NjkpokhClQ==}
     engines: {node: '>=20'}
     peerDependencies:
       '@medusajs/admin-sdk': 2.4.0
@@ -12276,7 +12276,7 @@ snapshots:
 
   '@tanstack/virtual-core@3.13.4': {}
 
-  '@tsc_tech/medusa-plugin-razorpay-payment@0.0.4(23bqxuq7dexrqk4fnxh3632awq)':
+  '@tsc_tech/medusa-plugin-razorpay-payment@0.0.6(23bqxuq7dexrqk4fnxh3632awq)':
     dependencies:
       '@medusajs/admin-sdk': 2.6.1
       '@medusajs/cli': 2.6.1(@mikro-orm/core@6.4.3)(@mikro-orm/knex@6.4.3(@mikro-orm/core@6.4.3)(pg@8.14.1))(@mikro-orm/migrations@6.4.3(@mikro-orm/core@6.4.3)(@types/node@20.17.25)(pg@8.14.1))(@mikro-orm/postgresql@6.4.3(@mikro-orm/core@6.4.3))(awilix@8.0.1)(ioredis@5.6.0)(pg@8.14.1)(vite@5.4.14(@types/node@20.17.25))
