@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { MedusaError } from "@medusajs/framework/utils";
+
 import { InviteUserEmail, INVITE_USER, isInviteUserData } from "./invite-user";
 import {
   OrderPlacedTemplate,
@@ -30,6 +31,7 @@ export function generateEmailTemplate(
   templateKey: string,
   data: unknown
 ): ReactNode {
+  console.log("generateEmailTemplate", templateKey, data);
   switch (templateKey) {
     case EmailTemplates.INVITE_USER:
       if (!isInviteUserData(data)) {

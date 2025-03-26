@@ -24,6 +24,7 @@ export const generateSMSTemplate = (
   template: SMSTemplate,
   data: TemplateData
 ): string => {
+  console.log("template", template);
   switch (template) {
     case "otp_verification":
       return `Your OTP code is ${data.otp}. Please use this to verify your account.`;
