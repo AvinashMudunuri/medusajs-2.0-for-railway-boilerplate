@@ -27,7 +27,7 @@ export const isDeliveryCreatedTemplateData = (
 const DeliveryCreatedTemplateBase = ({
   order,
   shippingAddress,
-  preview = "Suchitra Foods – Your order is on the way!",
+  preview = "Suchitra Foods Order Delivered!",
 }: DeliveryCreatedTemplateProps) => {
   return (
     <Base preview={preview}>
@@ -36,8 +36,7 @@ const DeliveryCreatedTemplateBase = ({
           Dear {shippingAddress.first_name} {shippingAddress.last_name},
         </Text>
         <Text style={{ margin: "0 0 30px" }}>
-          Good news! Your order {order.id} has been shipped and is on its way to
-          you.
+          Good news! Your order {order.id} has been delivered.
         </Text>
         <Text style={{ margin: "0 0 30px" }}>
           We hope you enjoy our products! If you have any feedback or need

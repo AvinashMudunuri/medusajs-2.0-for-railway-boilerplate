@@ -22,7 +22,11 @@ export default async function deliveryCreatedHandler({
     entity: "fulfillment",
     fields: [
       "id",
-      "order.*", // This retrieves all order fields
+      "order.id",
+      "order.email",
+      "order.shipping_address.first_name",
+      "order.shipping_address.last_name",
+      "order.shipping_address.phone",
     ],
     filters: {
       id: [fulfillmentId],
@@ -43,11 +47,11 @@ export default async function deliveryCreatedHandler({
         data: {
           emailOptions: {
             replyTo: "connect@suchitrafoods.com",
-            subject: "Your order has been delivered!",
+            subject: "Suchitra Foods Order Delivered!",
           },
           order,
           shippingAddress,
-          preview: "Your order has been delivered!",
+          preview: "Suchitra Foods Order Delivered!",
         },
       });
     logger.info(`Email notification ==> ${JSON.stringify(emailNotification)}`);
@@ -63,7 +67,7 @@ export default async function deliveryCreatedHandler({
       {
         to: shippingAddress.phone,
         channel: "sms",
-        template: "order_delivered" as SMSTemplate,
+        template: "delivery_created" as SMSTemplate,
         data: {
           orderId: order.id,
           customerName: `${shippingAddress.first_name} ${shippingAddress.last_name}`,
