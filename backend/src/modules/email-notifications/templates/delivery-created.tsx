@@ -2,16 +2,16 @@ import { Text, Section, Hr } from "@react-email/components";
 import { Base } from "./base";
 import { OrderDTO, OrderAddressDTO } from "@medusajs/framework/types";
 
-export const ORDER_DELIVERED = "order-delivered";
+export const DELIVERY_CREATED = "delivery-created";
 
-interface OrderDeliveredPreviewProps {
+interface DeliveryCreatedPreviewProps {
   order: OrderDTO & {
-    display_id: string;
+    id: string;
   };
   shippingAddress: OrderAddressDTO;
 }
 
-export interface OrderDeliveredTemplateProps {
+export interface DeliveryCreatedTemplateProps {
   order: OrderDTO & {
     display_id: string;
   };
@@ -19,16 +19,16 @@ export interface OrderDeliveredTemplateProps {
   preview?: string;
 }
 
-export const isOrderDeliveredTemplateData = (
+export const isDeliveryCreatedTemplateData = (
   data: any
-): data is OrderDeliveredTemplateProps =>
+): data is DeliveryCreatedTemplateProps =>
   typeof data.order === "object" && typeof data.shippingAddress === "object";
 
-const OrderDeliveredTemplateBase = ({
+const DeliveryCreatedTemplateBase = ({
   order,
   shippingAddress,
   preview = "Suchitra Foods – Your order is on the way!",
-}: OrderDeliveredTemplateProps) => {
+}: DeliveryCreatedTemplateProps) => {
   return (
     <Base preview={preview}>
       <Section>
@@ -36,8 +36,8 @@ const OrderDeliveredTemplateBase = ({
           Dear {shippingAddress.first_name} {shippingAddress.last_name},
         </Text>
         <Text style={{ margin: "0 0 30px" }}>
-          Good news! Your order {order.display_id} has been shipped and is on
-          its way to you.
+          Good news! Your order {order.id} has been shipped and is on its way to
+          you.
         </Text>
         <Text style={{ margin: "0 0 30px" }}>
           We hope you enjoy our products! If you have any feedback or need
@@ -63,9 +63,9 @@ const OrderDeliveredTemplateBase = ({
   );
 };
 
-export const OrderDeliveredTemplate = Object.assign(
-  OrderDeliveredTemplateBase,
+export const DeliveryCreatedTemplate = Object.assign(
+  DeliveryCreatedTemplateBase,
   {
-    PreviewProps: {} as OrderDeliveredPreviewProps,
+    PreviewProps: {} as DeliveryCreatedPreviewProps,
   }
 );

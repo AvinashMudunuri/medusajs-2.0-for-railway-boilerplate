@@ -69,7 +69,7 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
         >
           Order Summary
         </Text>
-        <Text style={{ margin: "0 0 5px" }}>Order ID: {order.display_id}</Text>
+        <Text style={{ margin: "0 0 5px" }}>Order ID: {order.id}</Text>
         <Text style={{ margin: "0 0 5px" }}>
           Order Date:{" "}
           {new Date(order.created_at).toLocaleDateString("en-GB", {
@@ -143,7 +143,8 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
               </Text>
               <Text>{item.quantity}</Text>
               <Text>
-                {item.unit_price} {order.currency_code}
+                {getSymbolFromCurrency(order.currency_code.toUpperCase())}{" "}
+                {item.unit_price}
               </Text>
             </div>
           ))}

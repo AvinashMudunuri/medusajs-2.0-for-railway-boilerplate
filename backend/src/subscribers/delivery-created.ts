@@ -1,36 +1,45 @@
-import { Modules } from "@medusajs/framework/utils";
-import {
-  INotificationModuleService,
-  IOrderModuleService,
-  Logger,
-} from "@medusajs/framework/types";
+import { Modules, ContainerRegistrationKeys } from "@medusajs/framework/utils";
+import { INotificationModuleService, Logger } from "@medusajs/framework/types";
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa";
 import { EmailTemplates } from "../modules/email-notifications/templates";
 import { SMSTemplate } from "../modules/sms-notifications/templates";
 
-export default async function fulfillmentDeliveredHandler({
+export default async function deliveryCreatedHandler({
   event: { data },
   container,
 }: SubscriberArgs<any>) {
   const notificationModuleService: INotificationModuleService =
     container.resolve(Modules.NOTIFICATION);
-  const orderModuleService: IOrderModuleService = container.resolve(
-    Modules.ORDER
-  );
+
   const logger: Logger = container.resolve("logger");
-  const order = await orderModuleService.retrieveOrder(data.id, {
-    relations: ["items", "summary", "shipping_address"],
+  const query = container.resolve(ContainerRegistrationKeys.QUERY);
+
+  // When you receive the fulfillment_id from the delivery.created event
+  const fulfillmentId = data.id; // or however you access the fulfillment ID
+
+  // Use Query to retrieve the fulfillment with its linked order
+  const { data: fulfillments } = await query.graph({
+    entity: "fulfillment",
+    fields: [
+      "id",
+      "order.*", // This retrieves all order fields
+    ],
+    filters: {
+      id: [fulfillmentId],
+    },
   });
-  const shippingAddress = await (
-    orderModuleService as any
-  ).orderAddressService_.retrieve(order.shipping_address.id);
+
+  // Now you can access the order data
+  const order = fulfillments[0].order;
+  const shippingAddress = order.shipping_address;
+  logger.info(`Order ==> ${JSON.stringify(order)}`);
 
   try {
     const emailNotification =
       await notificationModuleService.createNotifications({
         to: order.email,
         channel: "email",
-        template: EmailTemplates.ORDER_DELIVERED,
+        template: EmailTemplates.DELIVERY_CREATED,
         data: {
           emailOptions: {
             replyTo: "connect@suchitrafoods.com",

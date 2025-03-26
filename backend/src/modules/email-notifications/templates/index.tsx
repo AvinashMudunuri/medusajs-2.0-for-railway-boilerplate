@@ -13,16 +13,16 @@ import {
   isResetPasswordTemplateData,
 } from "./reset-password";
 import {
-  OrderDeliveredTemplate,
-  ORDER_DELIVERED,
-  isOrderDeliveredTemplateData,
-} from "./order-delivered";
+  DeliveryCreatedTemplate,
+  DELIVERY_CREATED,
+  isDeliveryCreatedTemplateData,
+} from "./delivery-created";
 
 export const EmailTemplates = {
   INVITE_USER,
   ORDER_PLACED,
   RESET_PASSWORD,
-  ORDER_DELIVERED,
+  DELIVERY_CREATED,
 } as const;
 
 export type EmailTemplateType = keyof typeof EmailTemplates;
@@ -60,14 +60,14 @@ export function generateEmailTemplate(
       }
       return <ResetPasswordTemplate {...data} />;
 
-    case EmailTemplates.ORDER_DELIVERED:
-      if (!isOrderDeliveredTemplateData(data)) {
+    case EmailTemplates.DELIVERY_CREATED:
+      if (!isDeliveryCreatedTemplateData(data)) {
         throw new MedusaError(
           MedusaError.Types.INVALID_DATA,
-          `Invalid data for template "${EmailTemplates.ORDER_DELIVERED}"`
+          `Invalid data for template "${EmailTemplates.DELIVERY_CREATED}"`
         );
       }
-      return <OrderDeliveredTemplate {...data} />;
+      return <DeliveryCreatedTemplate {...data} />;
 
     default:
       throw new MedusaError(
@@ -77,4 +77,4 @@ export function generateEmailTemplate(
   }
 }
 
-export { InviteUserEmail, OrderPlacedTemplate, OrderDeliveredTemplate };
+export { InviteUserEmail, OrderPlacedTemplate, DeliveryCreatedTemplate };
