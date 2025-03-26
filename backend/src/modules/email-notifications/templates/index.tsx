@@ -17,12 +17,18 @@ import {
   DELIVERY_CREATED,
   isDeliveryCreatedTemplateData,
 } from "./delivery-created";
+import {
+  ShipmentCreatedTemplate,
+  SHIPMENT_CREATED,
+  isShipmentCreatedTemplateData,
+} from "./shipment-created";
 
 export const EmailTemplates = {
   INVITE_USER,
   ORDER_PLACED,
   RESET_PASSWORD,
   DELIVERY_CREATED,
+  SHIPMENT_CREATED,
 } as const;
 
 export type EmailTemplateType = keyof typeof EmailTemplates;
@@ -69,6 +75,15 @@ export function generateEmailTemplate(
       }
       return <DeliveryCreatedTemplate {...data} />;
 
+    case EmailTemplates.SHIPMENT_CREATED:
+      if (!isShipmentCreatedTemplateData(data)) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          `Invalid data for template "${EmailTemplates.SHIPMENT_CREATED}"`
+        );
+      }
+      return <ShipmentCreatedTemplate {...data} />;
+
     default:
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
@@ -77,4 +92,9 @@ export function generateEmailTemplate(
   }
 }
 
-export { InviteUserEmail, OrderPlacedTemplate, DeliveryCreatedTemplate };
+export {
+  InviteUserEmail,
+  OrderPlacedTemplate,
+  DeliveryCreatedTemplate,
+  ShipmentCreatedTemplate,
+};
