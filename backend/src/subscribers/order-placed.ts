@@ -35,8 +35,8 @@ export default async function orderPlacedHandler({
         template: EmailTemplates.ORDER_PLACED,
         data: {
           emailOptions: {
-            replyTo: "connect@suchitrafoods.com",
-            subject: "Suchitra Foods Order Confirmation",
+            replyTo: "Suchitra Foods <connect@suchitrafoods.com>",
+            subject: "Suchitra Foods Order Confirmation!",
           },
           order,
           shippingAddress,

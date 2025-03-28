@@ -1,33 +1,34 @@
 import {
   INotificationModuleService,
-  IUserModuleService,
+  ICustomerModuleService,
 } from "@medusajs/framework/types";
 import { Modules } from "@medusajs/framework/utils";
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/framework";
-import { BACKEND_URL } from "../lib/constants";
 import { EmailTemplates } from "../modules/email-notifications/templates";
 
-export default async function userInviteHandler({
+export default async function customerCreatedHandler({
   event: { data },
   container,
 }: SubscriberArgs<any>) {
   const notificationModuleService: INotificationModuleService =
     container.resolve(Modules.NOTIFICATION);
-  const userModuleService: IUserModuleService = container.resolve(Modules.USER);
-  const invite = await userModuleService.retrieveInvite(data.id);
+  const customerModuleService: ICustomerModuleService = container.resolve(
+    Modules.CUSTOMER
+  );
+  const customer = await customerModuleService.retrieveCustomer(data.id);
 
   try {
     await notificationModuleService.createNotifications({
-      to: invite.email,
+      to: customer.email,
       channel: "email",
-      template: EmailTemplates.INVITE_USER,
+      template: EmailTemplates.CUSTOMER_CREATED,
       data: {
+        customer,
         emailOptions: {
           replyTo: "Suchitra Foods <connect@suchitrafoods.com>",
-          subject: "You've been invited to Medusa!",
+          subject: "Welcome to Suchitra Foods – Your Account is Ready! 🎉",
         },
-        inviteLink: `${BACKEND_URL}/app/invite?token=${invite.token}`,
-        preview: "The administration dashboard awaits...",
+        preview: "Welcome to Suchitra Foods – Your Account is Ready! 🎉",
       },
     });
   } catch (error) {
@@ -36,5 +37,5 @@ export default async function userInviteHandler({
 }
 
 export const config: SubscriberConfig = {
-  event: ["invite.created", "invite.resent"],
+  event: ["customer.created"],
 };

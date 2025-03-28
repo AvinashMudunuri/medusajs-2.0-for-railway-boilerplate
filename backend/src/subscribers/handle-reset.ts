@@ -25,7 +25,7 @@ export default async function resetPasswordTokenHandler({
     template: EmailTemplates.RESET_PASSWORD,
     data: {
       emailOptions: {
-        replyTo: "connect@suchitrafoods.com",
+        replyTo: "Suchitra Foods <connect@suchitrafoods.com>",
         subject: "Password Reset Request - Suchitra Foods",
       },
       // a URL to a frontend application

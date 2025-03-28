@@ -22,6 +22,11 @@ import {
   SHIPMENT_CREATED,
   isShipmentCreatedTemplateData,
 } from "./shipment-created";
+import {
+  CustomerCreatedTemplate,
+  CUSTOMER_CREATED,
+  isCustomerCreatedTemplateData,
+} from "./customer-created";
 
 export const EmailTemplates = {
   INVITE_USER,
@@ -29,6 +34,7 @@ export const EmailTemplates = {
   RESET_PASSWORD,
   DELIVERY_CREATED,
   SHIPMENT_CREATED,
+  CUSTOMER_CREATED,
 } as const;
 
 export type EmailTemplateType = keyof typeof EmailTemplates;
@@ -47,6 +53,15 @@ export function generateEmailTemplate(
         );
       }
       return <InviteUserEmail {...data} />;
+
+    case EmailTemplates.CUSTOMER_CREATED:
+      if (!isCustomerCreatedTemplateData(data)) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          `Invalid data for template "${EmailTemplates.CUSTOMER_CREATED}"`
+        );
+      }
+      return <CustomerCreatedTemplate {...data} />;
 
     case EmailTemplates.ORDER_PLACED:
       if (!isOrderPlacedTemplateData(data)) {
@@ -97,4 +112,5 @@ export {
   OrderPlacedTemplate,
   DeliveryCreatedTemplate,
   ShipmentCreatedTemplate,
+  CustomerCreatedTemplate,
 };

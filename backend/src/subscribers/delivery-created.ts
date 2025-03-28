@@ -46,7 +46,7 @@ export default async function deliveryCreatedHandler({
         template: EmailTemplates.DELIVERY_CREATED,
         data: {
           emailOptions: {
-            replyTo: "connect@suchitrafoods.com",
+            replyTo: "Suchitra Foods <connect@suchitrafoods.com>",
             subject: "Suchitra Foods Order Delivered!",
           },
           order,
