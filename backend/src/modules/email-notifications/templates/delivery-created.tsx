@@ -49,10 +49,6 @@ const DeliveryCreatedTemplateBase = ({
         </Text>
         <Hr />
         <Text style={{ margin: "0 0 30px" }}>
-          <b>Note:</b> We will reach out personally to you via mobile/WhatsApp
-          to provide more details about delivery tracking details.
-        </Text>
-        <Text style={{ margin: "0 0 30px" }}>
           From our Kitchen to yours,
           <br />
           Suchitra Foods
