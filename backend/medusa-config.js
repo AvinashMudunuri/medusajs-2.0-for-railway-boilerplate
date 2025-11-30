@@ -89,8 +89,13 @@ const medusaConfig = {
       authCors: AUTH_CORS,
       storeCors: STORE_CORS,
       jwtSecret: JWT_SECRET,
-      cookieSecret: COOKIE_SECRET,
+      cookieSecret: COOKIE_SECRET
     },
+    build: {
+      rollupOptions: {
+        external: ["@medusajs/dashboard"]
+      }
+    }
   },
   admin: {
     backendUrl: BACKEND_URL,
@@ -207,37 +212,28 @@ const medusaConfig = {
         ]
       : []),
     ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
-      ? [
-          {
-            resolve: "@rokmohar/medusa-plugin-meilisearch",
-            options: {
-              config: {
-                host: MEILISEARCH_HOST,
-                apiKey: MEILISEARCH_ADMIN_KEY,
-              },
-              settings: {
-                products: {
-                  indexSettings: {
-                    searchableAttributes: [
-                      "title",
-                      "description",
-                      "variant_sku",
-                    ],
-                    displayedAttributes: [
-                      "id",
-                      "title",
-                      "description",
-                      "variant_sku",
-                      "thumbnail",
-                      "handle",
-                    ],
-                  },
-                  primaryKey: "id",
-                },
-              },
-            },
+      ? [{
+        resolve: '@rokmohar/medusa-plugin-meilisearch',
+        options: {
+          config: {
+            host: MEILISEARCH_HOST,
+            apiKey: MEILISEARCH_ADMIN_KEY
           },
-        ]
+          settings: {
+            products: {
+              type: 'products',
+              enabled: true,
+              fields: ['id', 'title', 'description', 'handle', 'variant_sku', 'thumbnail'],
+              indexSettings: {
+                searchableAttributes: ['title', 'description', 'variant_sku'],
+                displayedAttributes: ['id', 'handle', 'title', 'description', 'variant_sku', 'thumbnail'],
+                filterableAttributes: ['id', 'handle'],
+              },
+              primaryKey: 'id',
+            }
+          }
+        }
+      }]
       : []),
   ],
   plugins: [],
