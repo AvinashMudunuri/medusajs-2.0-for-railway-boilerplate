@@ -41,7 +41,7 @@
     "currency-symbol-map": "^5.1.0",
     "medusajs-launch-utils": "latest",
     "minio": "^8.0.5",
-    "next": "^15.1.11",
+    "next": "^15.5.9",
     "pg": "^8.14.1",
     "resend": "4.0.1",
     "twilio": "^5.5.1",
