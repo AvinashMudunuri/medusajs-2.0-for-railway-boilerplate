@@ -65,6 +65,9 @@
     "typescript": "^5.8.2",
     "vite": "^5.4.14"
   },
+  "resolutions": {
+    "next": "^15.5.9"
+  },
   "packageManager": "pnpm@9.10.0",
   "engines": {
     "node": "22.x",
