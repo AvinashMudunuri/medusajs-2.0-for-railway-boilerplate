@@ -38,9 +38,9 @@
     "resend": "4.0.1",
     "ulid": "^2.4.0",
     "@tsc_tech/medusa-plugin-razorpay-payment": "^0.0.6",
+    "awilix": "^8.0.1",
     "currency-symbol-map": "^5.1.0",
     "pg": "^8.14.1",
-    "awilix": "^8.0.1",
     "twilio": "^5.5.1"
   },
   "devDependencies": {
@@ -60,6 +60,9 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vite": "^5.4.21"
+  },
+  "resolutions": {
+    "next": "^15.5.9"
   },
   "packageManager": "pnpm@9.10.0",
   "engines": {
